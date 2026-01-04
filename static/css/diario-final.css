@@ -1,0 +1,462 @@
+/* ================= VARIÁVEIS ================= */
+:root {
+  --azul1: #164757;
+  --azul2: #2395ba;
+  --turquesa: #00d8c6;
+  --puroturquesa: #01c290;
+  --branco: #ffffff;
+  --cinza-claro: #f1f5f9;
+  --cinza-medio: #e5e7eb;
+  --amarelo: #ffc94d;
+  --amarelo: #ffc94d;
+  --vermelho: #ff5454;
+  --verde: #64de4e;
+
+
+--space-1: 4px;
+--space-2: 8px;
+--space-3: 12px;
+--space-4: 16px;
+--space-5: 20px;
+--space-6: 24px;
+--space-7: 32px;
+--space-8: 48px;
+
+--max-width: 1200px;
+}
+
+/* ================= RESET / BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--cinza-claro);
+  color: #333;
+  line-height: 1.5;
+}
+
+/* ======== HEADER ======== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, var(--azul1), var(--azul2));
+  color: var(--branco);
+  padding: var(--space-4) var(--space-7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+h2 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+
+/* ======== NAV DESKTOP ======== */
+.nav-principal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nav-principal a {
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.nav-principal a:hover {
+  opacity: 0.8;
+}
+
+
+/* BOTÃO HAMBÚRGUER */
+.hamburger {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: none;
+  /* padrão: escondido, só aparece ≤900px */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  position: relative;
+  z-index: 5000 !important;
+}
+
+.hamburger-nav {
+  position: fixed !important;
+  top: 70px;
+  right: 16px;
+  left: 16px;
+  z-index: 5000 !important;
+}
+
+/* BARRAS DO HAMBÚRGUER */
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* MENU MOBILE */
+.hamburger-nav {
+  position: absolute;
+  top: 60px;
+  right: 16px;
+  left: 16px;
+  background: linear-gradient(135deg, #164757, #2395ba);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px) scaleY(0.98);
+  transition: all 0.25s ease;
+  z-index: 1500;
+}
+
+.hamburger-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+button:not(.hamburger):hover {
+  background: var(--turquesa);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* MENU ABERTO */
+.hamburger-nav.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scaleY(1);
+}
+
+button .hamburger {
+  background: red;
+  color: var(--branco);
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--space-3);
+  transition: 0.2s;
+}
+
+/* RESPONSIVIDADE: ≤900px */
+@media (max-width: 900px) {
+  .nav-principal {
+    display: none;
+    /* esconde nav desktop */
+  }
+
+  .hamburger {
+    display: flex;
+    /* mostra o botão */
+  }
+
+  header h1 {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+}
+
+
+/* ================= CONTAINER ================= */
+.container {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: auto;
+  padding: var(--space-7) var(--space-5);
+  padding-bottom: 140px;
+  /* evita sobreposição do footer */
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+}
+
+/* ================= GRID TOPO ================= */
+.grid-topo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+/* ================= CARDS ================= */
+.card {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: var(--space-5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+  margin-bottom: var(--space-4);
+  color: var(--azul1);
+  font-size: 22px;
+}
+
+.destaque {
+  border-left: 6px solid var(--turquesa);
+  padding-left: var(--space-3);
+}
+
+/* ================= LISTA DE ALUNOS ================= */
+.lista-alunos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.linha-aluno {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f8fafa;
+  align-items: center;
+  border: 1px solid #d4e1e4;
+}
+
+.linha-aluno input {
+  width: 100%;
+}
+
+/* ================= HISTÓRICO ================= */
+.tabela-grid {
+  display: grid;
+  width: 100%;
+  max-height: 500px;
+  /* limite visual, scrollbar aparece */
+  overflow-y: auto;
+}
+
+.tabela-grid .linha {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 2fr 1fr 1fr 2fr;
+  padding: 10px 12px;
+  border-bottom: 1px solid #dbe4e6;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.tabela-grid .linha.titulo {
+  background: var(--azul2);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px 6px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tabela-grid .conteudo:nth-child(even) {
+  background: #f8fafa;
+}
+
+.tabela-grid .conteudo div {
+  padding: 6px 4px;
+}
+
+/* ================= INPUTS / BUTTONS ================= */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: 10px;
+  border: 1px solid var(--cinza-medio);
+  font-family: inherit;
+  margin-top: var(--space-2);
+}
+
+textarea {
+  height: 90px;
+  resize: none;
+}
+
+button .b-1 {
+  background: var(--puroturquesa);
+  color: var(--branco);
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--space-3);
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.b-1 {
+  background: var(--puroturquesa);
+  color: var(--branco);
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--space-3);
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#b-1 {
+  background: var(--puroturquesa);
+  color: var(--branco);
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--space-3);
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+button:not(.hamburger):hover {
+  background: var(--turquesa);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: var(--azul1);
+  color: var(--branco);
+  padding: var(--space-4);
+  font-size: 14px;
+  z-index: 1000;
+}
+
+
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* base dos toasts */
+.toast {
+  color: #fff;
+  padding: 12px 18px;
+  background: #ffffff;
+  border-radius: 8px;
+  font-size: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp .3s ease;
+}
+/* ======== RESPONSIVIDADE GERAL ======== */
+@media (max-width: 768px) {
+
+  /* Container principal em 1 coluna */
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  /* Grid do topo fica totalmente em 1 coluna */
+  .grid-topo {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-5);
+  }
+
+  /* Ajuste dos cards para ocupar toda a largura */
+  .card {
+    width: 100%;
+  }
+
+  /* Ajuste da tabela para mobile (scroll horizontal suave) */
+  .tabela-grid {
+    overflow-x: auto;
+  }
+
+  .tabela-grid .linha {
+    min-width: 700px;
+    /* evita quebra feia no mobile */
+  }
+
+  .toast-container {
+  position: fixed;
+  width: 90%;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+
+
+}
+
+/*
+/* ======== ESCONDER DATA NOTA INDIVIDUAL MOBILE ======== */
+@media (max-width: 768px) {
+
+  /* Esconde a data da linha do aluno no mobile */
+  .linha-aluno input[type="date"],
+  .linha-aluno .dataAluno {
+    display: none !important;
+  }
+}

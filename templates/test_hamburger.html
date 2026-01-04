@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste Hamburguer</title>
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gestor.css') }}">
+  <style>
+    main {
+      padding: 20px;
+    }
+    .test-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fa-solid fa-users"></i> Teste Hamburguer</h1>
+    <nav class="nav-principal">
+      <a href="{{ url_for('index_page') }}">Home</a>
+      <a href="{{ url_for('chat_page') }}">Chat</a>
+      <a href="{{ url_for('landing') }}">Sair</a>
+    </nav>
+    <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="main-nav" class="hamburger-nav" aria-hidden="true">
+      <a href="{{ url_for('index_page') }}">Home</a>
+      <a href="{{ url_for('chat_page') }}">Chat</a>
+      <a href="{{ url_for('landing') }}">Sair</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="test-box">
+      <h2>Teste do Hamburguer</h2>
+      <p><strong>Instruções:</strong></p>
+      <ol>
+        <li>Abra o DevTools (F12)</li>
+        <li>Vá para a aba "Console"</li>
+        <li>Redimensione a tela para menos de 900px (ou use DevTools responsive mode)</li>
+        <li>Clique no ícone do hamburguer</li>
+        <li>Verifique se aparece "Menu: ABERTO" ou "Menu: FECHADO" no console</li>
+      </ol>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/gestor.js') }}"></script>
+</body>
+</html>

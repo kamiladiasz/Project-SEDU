@@ -1,0 +1,236 @@
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página do Professor - Escola Exemplo</title>
+
+        <!-- Fontes e CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/professor.css') }}">
+
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+
+    <body>
+
+        <header>
+    <h1><i class="fa-solid fa-users"></i> Painel do Professor</h1>
+
+    <!-- Nav desktop -->
+    <nav class="nav-principal">
+        <a href="{{ url_for('index_page') }}">Portal</a>
+        <a href="{{ url_for('chat_page') }}">Mensagens</a>
+            <a href="{{ url_for('login') }}">Deslogar</a>
+
+        <a href="{{ url_for('landing') }}">Sair</a>
+    </nav>
+
+    <!-- Botão Hambúrguer -->
+    <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Menu Mobile -->
+    <nav id="main-nav" class="hamburger-nav" aria-hidden="true">
+        <a href="{{ url_for('index_page') }}">Portal</a>
+        <a href="{{ url_for('chat_page') }}">Mensagens</a>
+            <a href="{{ url_for('login') }}">Deslogar</a>
+
+        <a href="{{ url_for('landing') }}">Sair</a>
+    </nav>
+    </header>
+
+        <!-- ================= CONTAINER PRINCIPAL ================= -->
+        <div class="container">
+            <main class="dashboard">
+
+                <!-- COLUNA ESQUERDA -->
+                <aside class="coluna-pequena">
+
+                    <!-- CARD TURMAS -->
+                    <section class="card" class="card minhas-turmas" ondblclick="abrirModal('Minhas Turmas', this)">
+                        <h2>Minhas Turmas</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Turma</th>
+                                    <th>Alunos</th>
+                                    <th>Frequência Média</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>6º Ano A</td>
+                                    <td>28</td>
+                                    <td>93%</td>
+                                    <td><a href="{{ url_for('diario_final') }}">
+    <button class="btn-diarioturma" id="btn-diarioturma">Ver Diário</button>
+    </a></td>
+                                </tr>
+                                <tr>
+                                    <td>7º Ano B</td>
+                                    <td>32</td>
+                                    <td>96%</td>
+                                    <td><a href="{{ url_for('diario_final') }}">
+    <button class="btn-diarioturma" id="btn-diarioturma">Ver Diário</button>
+    </a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- CARD ALERTAS -->
+                    <section class="card">
+                        <h2>Alertas</h2>
+                        <div class="alerta3"><i class="fa-solid fa-exclamation-triangle"></i> Alunos acima da Média: 6</div>
+                        <div class="alerta2"><i class="fa-solid fa-exclamation-triangle"></i> Notas na Média Mínima: 9</div>
+                        <div class="alerta1"><i class="fa-solid fa-exclamation-triangle"></i> Abaixo da Média: 4</div>
+                        <div class="alerta1"><i class="fa-solid fa-exclamation-triangle"></i> Frequência abaixo de 75%: 3
+                        </div>
+                        <div class="alerta2"><i class="fa-solid fa-exclamation-triangle"></i> Atualização de atas e
+                            professores</div>
+                    </section>
+
+                    <!-- CARD DESEMPENHO -->
+                    <section class="card">
+                        <h2>Desempenho da Turma</h2>
+                        <canvas id="graficoNotas"
+                            style="margin-top:1rem; height:150px; width:100%; background:#f9f9f9; border-radius:6px;"></canvas>
+                    </section>
+
+                </aside>
+
+                <!-- COLUNA DIREITA -->
+                <aside class="coluna-pequena">
+
+                    <!-- CARD DIÁRIO -->
+                    <section class="card" id="card-diario">
+                        <h2>Diário de Classe</h2>
+                        <label for="data-registro">Data do Registro:</label>
+                        <input type="date" id="data-registro">
+
+                        <label for="turma-registro">Selecionar Turma:</label>
+                        <select id="turma-registro">
+                            <option disabled selected>Selecione a turma</option>
+                            <option value="turma1">Turma 1</option>
+                            <option value="turma2">Turma 2</option>
+                            <option value="turma3">Turma 3</option>
+                        </select>
+
+                        <textarea id="texto-registro"
+                            placeholder="Registrar observações sobre a aula ou alunos..."></textarea>
+
+                        <button id="btn-salvar-registro" onclick="showToast('Registro salvo com sucesso!')">
+                            Salvar Registro
+                        </button>
+                    </section>
+                    
+                        <!-- CARD COMUNICAÇÃO -->
+                        <section class="card" id="card-comunicacao">
+                            <h2>Comunicação</h2>
+                            <div id="input-envio">
+                                <select id="select-nome">
+                                    <option disabled selected>Selecionar nome</option>
+                                    <option value="1">Aluno(a)</option>
+                                    <option value="2">Responsável</option>
+                                </select>
+
+                                <select id="select-email">
+                                    <option disabled selected>Selecionar e-mail</option>
+                                    <option value="email1@example.com">Nome1/email1@example.com</option>
+                                    <option value="email2@example.com">Nome2/email2@example.com</option>
+                                    <option value="email3@example.com">Nome3/email3@example.com</option>
+                                </select>
+
+                                <textarea id="texto-mensagem"
+                                    placeholder="Enviar mensagem para alunos ou responsáveis..."></textarea>
+
+                                <button id="btn-enviar-mensagem" onclick="showToast('Mensagem enviada!')">
+                                    Enviar
+                                </button>
+                            </div>
+                        </section>
+
+
+                        <!-- CARD RELATÓRIOS -->
+                        <section class="card" id="card-relatorio">
+                            <h2>Relatórios</h2>
+                            <button id="btn-relatorio" onclick="showToast('Boletins gerados com sucesso!')">
+                                📄 Gerar Boletins
+                            </button>
+                            <button id="btn-relatorio" onclick="showToast('Diário exportado com sucesso!')">
+                                📊 Exportar Diário
+                            </button>
+                        </section>
+
+                </aside>
+
+                <!-- CARD CHAMADA -->
+                <section class="card-chamada">
+                    <h2>Chamada de Presença</h2>
+                    <label for="data-chamada">Data do Registro:</label>
+                    <input type="date" id="data-chamada">
+
+                    <label class="opchamada">Selecione a Turma:</label>
+                    <select id="select-turma">
+                        <option disabled selected>Escolher turma</option>
+                        <option value="6A">6º Ano A</option>
+                        <option value="7B">7º Ano B</option>
+                        <option value="8C">8º Ano C</option>
+                    </select>
+
+                    <label class="opchamada">Selecione o Turno:</label>
+                    <select id="select-turno">
+                        <option disabled selected>Escolher turno</option>
+                        <option value="manha">Manhã</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="noite">Noite</option>
+                    </select>
+
+                    <div id="lista-alunos"></div>
+                    <button id="btn-salvar" onclick="showToast('Chamada salva!')">
+                        Salvar Chamada
+                    </button>
+                </section>
+
+            </main>
+        </div>
+
+        <footer>
+            © 2025 Escola Exemplo - Todos os direitos reservados.
+        </footer>
+
+        <!-- MODAL UNIVERSAL -->
+        <div id="modalOverlay" class="modal-overlay"
+            style="position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; z-index:2000;"></div>
+
+        <div id="modal" class="modal" style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(.9);
+            background:#fff; padding:18px; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,.25);
+            max-width:92%; width:720px; display:none; max-height:85vh; overflow:auto; z-index:2001;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h3 id="modalTitle" style="margin:0; font-size:1.1rem; color:#164757;"></h3>
+                <div>
+                    <button id="modalExpand" title="Expandir" style="margin-right:8px; padding:6px 8px; border-radius:6px; border:none;
+                        background:#2395ba; color:#fff; cursor:pointer;">⛶</button>
+                    <button id="modalClose" title="Fechar" style="padding:6px 8px; border-radius:6px; border:none;
+                        background:#ff5454; color:#fff; cursor:pointer;">×</button>
+                </div>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+
+
+
+        <!-- JS UNIFICADO -->
+        <script src="{{ url_for('static', filename='js/professor.js') }}" defer></script>
+
+    </body>
+
+    </html>

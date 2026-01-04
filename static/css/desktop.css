@@ -1,0 +1,29 @@
+/* ====================================
+   DESKTOP (acima de 769px)
+   ==================================== */
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Cards lado a lado quando possível */
+.card {
+    padding: 10px;
+}
+
+/* Tabelas com texto confortável */
+table th,
+table td {
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+/* Layout da lista de alunos */
+.linha-aluno {
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}

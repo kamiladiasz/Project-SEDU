@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página do Gestor — Dashboard</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS Padronizado -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gestor.css') }}">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  
+
+   <!-- ================= HEADER ================= -->
+<!-- ================= HEADER ================= -->
+  <header>
+    <h1><i class="fa-solid fa-users"></i> Painel do Gestor</h1>
+
+    <!-- Nav desktop -->
+    <nav class="nav-principal">
+      <a href="{{ url_for('index_page') }}">Portal</a>
+    <a href="{{ url_for('chat_page') }}">Mensagens</a>
+        <a href="{{ url_for('login') }}">Deslogar</a>
+
+    <a href="{{ url_for('landing') }}">Sair</a>
+    </nav>
+
+    <!-- Botão Hambúrguer -->
+    <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Menu Mobile -->
+    <nav id="main-nav" class="hamburger-nav" aria-hidden="true">
+      <a href="{{ url_for('index_page') }}">Portal</a>
+    <a href="{{ url_for('chat_page') }}">Mensagens</a>
+        <a href="{{ url_for('login') }}">Deslogar</a>
+
+    <a href="{{ url_for('landing') }}">Sair</a>
+    </nav>
+  </header>
+
+
+  <main>
+    <!-- Linha A: Visão Geral -->
+    <div id="line-a">
+      <section class="card card-visao-geral" ondblclick="abrirModal('Visão Geral', this)">
+        <h2 id="visaoGeral">Visão Geral</h2>
+        <div class="visao-geral-wrapper">
+      <img src="{{ url_for('static', filename='img/logoescola1-Kirsher.png') }}" alt="logo-escola">
+          <div class="info-visao">
+            <p id="nomeEscola"><strong>Instituição:</strong> Centro de Ensino Médio - CEM</p>
+            <p id="cnpjEscola"><strong>CNPJ:</strong> 915.125.125/0001-00</p>
+            <p id="horarioEscola"><strong>Horário de Funcionamento:</strong> 07:00 às 18:00</p>
+            <p id="totalAlunosEscola"><strong>Total de alunos:</strong> 320</p>
+            <p id="totalProfEscola"><strong>Total de professores:</strong> 25</p>
+
+          </div>
+          <div class="info-visao">
+            <p class="turmasSeries"><strong>Ensinos:</strong> Infantil • Fundamental • Médio</p>
+
+            <p id="TurmasEscolaInfantil" class="turmasSeries">
+              <strong>1. Ensino Infantil:</strong> Pré I e Pré II
+            </p>
+
+            <p id="TurmasEscolaFundamental1" class="turmasSeries">
+              <strong>2. Ensino Fundamental 1:</strong> 1º ao 5º ano
+            </p>
+
+            <p id="TurmasEscolaFundamental2" class="turmasSeries">
+              <strong>3. Ensino Fundamental 2:</strong> 6º ao 9º ano
+            </p>
+
+            <p id="TurmasEscolaMedio" class="turmasSeries">
+              <strong>4. Ensino Médio:</strong> 1º ao 3º ano
+            </p>
+
+            <p id="totalTurmasEscola">
+              <strong>Turmas ativas:</strong> 12
+            </p>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Linha B: Gráficos + Alertas -->
+    <div id="line-b">
+      <div class="col-left">
+        <section class="card" ondblclick="abrirModal('Desempenho Geral', this)">
+          <h2>Desempenho Geral</h2>
+          <canvas id="graficoGeral"></canvas>
+        </section>
+
+
+        <section class="card" ondblclick="abrirModal('Alertas', this)">
+          <h2>Alertas</h2>
+          <div class="alerta"><i class="fa-solid fa-exclamation-triangle"></i> Alunos com frequência abaixo de 75%: 12
+          </div>
+          <div class="alerta"><i class="fa-solid fa-exclamation-triangle"></i> Professores com avaliações pendentes: 3
+          </div>
+          <div class="alerta"><i class="fa-solid fa-exclamation-triangle"></i> Reunião dos Professores: Quinta Feira -
+            11/03/2026</div>
+          <div class="alerta"><i class="fa-solid fa-exclamation-triangle"></i> Atualização de atas e atualizações dos
+            Professores</div>
+        </section>
+      </div>
+
+      <div class="col-right">
+        <section class="card" ondblclick="abrirModal('Desempenho por Turma', this)">
+          <h2>Desempenho por Turma</h2>
+          <div class="filtros-desempenho">
+            <select id="filtro-turma" class="input-comunicacao">
+              <option disabled selected>Selecione a Turma</option>
+              <option>6º Ano A</option>
+              <option>7º Ano B</option>
+              <option>8º Ano C</option>
+            </select>
+            <select id="filtro-ano" class="input-comunicacao">
+              <option disabled selected>Selecione o Ano</option>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+            </select>
+            <select id="filtro-turno" class="input-comunicacao">
+              <option disabled selected>Selecione o Turno</option>
+              <option>Matutino</option>
+              <option>Vespertino</option>
+              <option>Noturno</option>
+            </select>
+          </div>
+
+          <div class="dashboard-turma">
+            <div class="box-info card">
+              <h3>Média da Turma</h3>
+              <p class="valor">7.8</p>
+            </div>
+            <div class="box-info card">
+              <h3>Percentual de Faltas</h3>
+              <p class="valor">12%</p>
+            </div>
+          </div>
+
+          <canvas id="graficoTurma"></canvas>
+        </section>
+      </div>
+    </div>
+
+    <!-- Linha C: Professores + Comunicação -->
+    <div id="line-c">
+      <section class="card-professores card" ondblclick="abrirModal('Professores', this)">
+        <h2>Professores</h2>
+        <div class="table-wrapper">
+          <table class="tabela-professores">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Turma</th>
+                <th>Matéria</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>João Silva</td>
+                <td>6º Ano A</td>
+                <td>Matemática</td>
+                <td><button class="btnDetalhes" onclick="detalhesProfessor(this)" data-prof="João Silva">Detalhes</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Clara Santos</td>
+                <td>7º Ano B</td>
+                <td>Português</td>
+                <td><button class="btnDetalhes" onclick="detalhesProfessor(this)" data-prof="Clara Santos">Detalhes</button></td>
+              </tr>
+              <tr>
+                <td>Claudio Romão</td>
+                <td>8º Ano C</td>
+                <td>Química</td>
+                <td><button  class="btnDetalhes" onclick="detalhesProfessor(this)" data-prof="Claudio Romão">Detalhes</button></td>
+              </tr>
+              <tr>
+                <td>Silvia Nascimento</td>
+                <td>7º Ano A</td>
+                <td>Educação Física</td>
+                <td><button class="btnDetalhes" onclick="detalhesProfessor(this)" data-prof="Silvia Nascimento">Detalhes</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card" ondblclick="abrirModal('Enviar Mensagem', this)">
+        <h2>Enviar Mensagem</h2>
+        <select id="select-tipo" class="input-comunicacao">
+          <option disabled selected>Selecione o tipo de destinatário</option>
+          <option value="professores">Professores</option>
+          <option value="responsaveis">Responsáveis</option>
+        </select>
+        <select id="select-nome-gestor" class="input-comunicacao">
+          <option disabled selected>Selecione o nome / email</option>
+        </select>
+        <textarea id="texto-comunicado" placeholder="Enviar comunicado para professores ou pais..."></textarea>
+        <button id="btn-enviar-gestor">Enviar</button>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Escola Exemplo - Todos os direitos reservados.
+  </footer>
+
+  <!-- MODAL UNIVERSAL -->
+  <!-- MODAL UNIVERSAL -->
+  <div id="modalOverlay" class="modal-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;">
+  </div>
+
+  <div id="modal" class="modal" style="position:fixed;top:50%;left:50%;transform:translate(-50%, -50%) scale(.9);
+     background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25);
+     max-width:92%;width:720px;display:none;max-height:85vh;overflow:auto;">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <h3 id="modalTitle" style="margin:0;font-size:1.1rem;color:#164757;"></h3>
+
+      <div class="botoes-pop-up" style="display:flex; gap:8px;">
+        <button id="modalExpand" class="modal-expand" title="Expandir"
+          style="padding:6px 8px; border-radius:6px; border:none;background:#2395ba; color:#fff; cursor:pointer;">
+          ⛶
+        </button>
+
+        <button id="modalClose" class="modal-close" title="Fechar"
+          style="padding:6px 8px; border-radius:6px; border:none;background:#ff5454; color:#fff; cursor:pointer;">
+          &times;
+        </button>
+      </div>
+    </div>
+
+    <!-- AQUI QUE DEVIA ESTAR (dentro do modal) -->
+    <div id="modalBody"></div>
+
+  </div>
+  
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/gestor.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SEDU - Sistema Educacional de Dados Unificados">
+  <title>SEDU - Sistema Educacional de Dados Unificados</title>
+    <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+  <link rel="icon" type="image/png" sizes="512x512" href="{{ url_for('static', filename='Fav/web-app-manifest-512x512.png') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+    
+</head>
+<body>
+
+  <!-- ======== HEADER ========1 -->
+  <header class="header">
+  <div class="container">
+      <div class="logo">
+      <img src="{{ url_for('static', filename='img/sedu-logo-atualizado-1.png') }}" alt="logo-sedu">
+    </div>
+
+    <!-- Botão hambúrguer (aparece em telas pequenas) -->
+    <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav hamburger-nav" id="main-nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#proposito">Propósito</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#visao">Visao</a>
+      <a href="#seguranca">Segurança</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="login-compact" aria-live="polite">
+         <div class="login-btn-area">
+<a href="{{ url_for('login') }}" class="btn btn-primary btn-login">Entrar</a>
+        </div>
+
+    
+
+      <div class="login-msg" id="login-msg" aria-live="polite"></div>
+    </div>
+  </div>
+  <!-- ======== HERO ======== -->
+  <section class="hero fade-in" id="inicio">
+    <div class="hero-content">
+      <h1>Educação com propósito e inteligência.</h1>
+        <p>Acompanhe o desenvolvimento escolar de cada aluno de forma completa, humana e integrada.</p>
+        <p>Um sistema que conecta dados, professores, gestores e famílias em prol do futuro da educação.</p>
+      <div class="hero-buttons">
+        <a href="#cadastro" class="btn-primary">Comece Agora</a>
+        <a href="#proposito" class="btn-secondary">Saiba Mais</a>
+      </div>
+    </div>
+    <img src="{{ url_for('static', filename='img/img-crianca-fundo-amarelo-1.png') }}" alt="Estudantes" class="hero-image2">
+  </section>
+
+  <!-- ======== SEÇÕES ======== -->
+<section id="proposito" class="section slide-up">
+  <div class="proposito-container">
+
+    <!-- Texto no topo -->
+    <div class="proposito-texto">
+      <h2>Nosso Propósito</h2>
+      <p>
+        A comunidade escolar enfrenta desafios diários: superlotação, falta de recursos e pouca integração entre dados pedagógicos. 
+        O <strong>SEDU</strong> nasceu para mudar esse cenário.
+      </p>
+      <p>
+        Nosso objetivo é centralizar e analisar informações escolares — desde notas e frequência até aspectos socioemocionais — 
+        para apoiar gestores e professores na construção de uma educação mais eficiente e inclusiva.
+      </p>
+      <div class="linha-horizontal"></div>
+    </div>
+
+    <!-- Três imagens abaixo -->
+    <div class="proposito-imagens">
+      <div class="gpc-b_sobreposicao">
+  <!-- <img src="img/photo3.png" class="img img-1" alt="crianca-estudante">
+  <img src="img/photo2.png" class="img img-2" alt="adolestente-estudante"> -->
+  <img src="{{ url_for('static', filename='img/photo01 (1).png') }}" class="img img-3" alt="professora-dando-aula">
+</div>
+
+
+  </div>
+</section>
+
+
+
+  <section id="funcionalidades" class="section destaque slide-up">
+  <div class="features">
+
+    <!-- Análise de Desempenho -->
+    <div class="feature-card">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#164757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+      <h3>Análise de Desempenho</h3>
+      <p>Visualize o progresso de cada aluno ou turma com gráficos e relatórios interativos.</p>
+    </div>
+
+    <!-- Análise Preditiva -->
+    <div class="feature-card">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2395ba" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <h3>Análise Preditiva</h3>
+      <p>Algoritmos de IA ajudam a prever dificuldades de aprendizado e sugerem intervenções.</p>
+    </div>
+
+    <!-- Gestão Escolar Integrada -->
+    <div class="feature-card">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00d8c6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 21v-13l9-4 9 4v13"></path>
+        <polyline points="9 10 9 21 15 21 15 10"></polyline>
+      </svg>
+      <h3>Gestão Escolar Integrada</h3>
+      <p>Matrículas, presença, notas e históricos em um só lugar.</p>
+    </div>
+
+    <!-- Diário de Classe Digital -->
+    <div class="feature-card">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#01c290" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19h16v-14H4z"></path>
+        <line x1="4" y1="10" x2="20" y2="10"></line>
+      </svg>
+      <h3>Diário de Classe Digital</h3>
+      <p>Professores registram aulas e observações pedagógicas facilmente.</p>
+    </div>
+
+    <!-- Perfil do Aluno -->
+    <div class="feature-card">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffc94d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="7" r="4"></circle>
+        <path d="M5.5 21h13a2 2 0 0 0-1.8-3H7.3a2 2 0 0 0-1.8 3z"></path>
+      </svg>
+      <h3>Perfil do Aluno</h3>
+      <p>Histórico completo e personalizado.</p>
+    </div>
+
+    <!-- Comunicação Unificada -->
+    <div class="feature-card">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffc94d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <h3>Comunicação Unificada</h3>
+      <p>Pais, alunos e gestores conectados em tempo real.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======== CARROSSEL DE PARCEIROS ======== -->
+<section class="carrossel-section">
+  <h2>Empresas que apoiam o projeto</h2>
+
+  <div class="carrossel-container">
+    <div class="carrossel-slider">
+      
+      <!-- Repita as logos para efeito infinito -->
+      <img src="{{ url_for('static', filename='img/serasa_logo.png') }}" alt="Empresa 2">
+      <img src="{{ url_for('static', filename='img/logosite-gerandofalcoes.png') }}" alt="Empresa 3"  style="width: 500px;">
+      <img src="{{ url_for('static', filename='img/senac_logo.png') }}" alt="Empresa 1">
+      <img src="{{ url_for('static', filename='img/Canva-logo.png') }}" alt="Empresa 4">
+      <img src="{{ url_for('static', filename='img/GitHub-Logo.png') }}" alt="Empresa 5">
+
+      <!-- repetição para loop contínuo -->
+      <img src="{{ url_for('static', filename='img/serasa_logo.png') }}" alt="Empresa 2">
+      <img src="{{ url_for('static', filename='img/logosite-gerandofalcoes.png') }}" alt="Empresa 3" style="width: 500px;"  >
+      <img src="{{ url_for('static', filename='img/senac_logo.png') }}" alt="Empresa 1">
+      <img src="{{ url_for('static', filename='img/Canva-logo.png') }}" alt="Empresa 4">
+      <img src="{{ url_for('static', filename='img/GitHub-Logo.png') }}" alt="Empresa 5">
+
+    </div>
+  </div>
+</section>
+
+  <!-- Continue para as outras funcionalidades -->
+</div>
+
+  </section>
+
+  <section id="impacto" class="section slide-up">
+    <div class="section-content-wrapper img-right">
+      <div class="section-box">
+        <h2>Mais do que um sistema. Uma nova visão de ensino.</h2>
+        <div class="impacto-list">
+          <div class="impacto-item">
+            <span class="impacto-icon">✓</span>
+            <p>Identifique necessidades individuais e promova o aprendizado personalizado.</p>
+          </div>
+          <div class="impacto-item">
+            <span class="impacto-icon">✓</span>
+            <p>Reduza a evasão escolar com ações baseadas em dados reais.</p>
+          </div>
+          <div class="impacto-item">
+            <span class="impacto-icon">✓</span>
+            <p>Otimize a alocação de professores e recursos pedagógicos.</p>
+          </div>
+          <div class="impacto-item">
+            <span class="impacto-icon">✓</span>
+            <p>Fortaleça o vínculo entre escola, aluno e comunidade.</p>
+          </div>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="{{ url_for('static', filename='img/img1.png') }}" alt="Impacto e transformação">
+        </div>
+      
+    </div>
+   
+
+      
+
+
+    
+  </section>
+  <!-- ======== SEÇÃO 5 - MENSAGEM INSTITUCIONAL ======== -->
+  <section class="section" id="visao">
+    <div class="section-content-wrapper img-left">
+      <div class="section-image">
+        <img src="{{ url_for('static', filename='img/img3.png') }}" alt="Educação humanizada">
+      </div>
+      <div class="section-box">
+        <h2>Juntos, por uma educação mais humana e eficiente.</h2>
+        <p>O SEDU acredita que cada aluno é único — e cada dado pode transformar uma história. Com tecnologia e propósito, queremos apoiar escolas na missão de formar cidadãos preparados para o futuro.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SEÇÃO 6 - SEGURANÇA DE DADOS ======== -->
+  <section id="seguranca" class="section">
+    <div class="section-content-wrapper img-right">
+      <div class="section-box">
+        <h2>Compromisso com a privacidade e segurança.</h2>
+        <p>O SEDU segue as normas da LGPD, garantindo que todas as informações sejam tratadas com responsabilidade e transparência.</p>
+        <p>Acreditamos que tecnologia só tem valor quando protege e respeita as pessoas.</p>
+      </div>
+      <div class="section-image">
+        <img src="{{ url_for('static', filename='img/img2 (1).png') }}" alt="Segurança de dados">
+      </div>
+    </div>
+  </section>
+
+ 
+  
+
+  <!-- ======== BOTÃO TOPO ======== -->
+  <button id="top-btn" title="Voltar ao topo">↑</button>
+  <!-- ======== SEÇÃO DO FORMULÁRIO (CONTATO) ======== -->
+<section class="contato-sedu" id="contato">
+  <div class="contato-wrapper">
+
+    <!-- LADO ESQUERDO -->
+
+    
+      <!-- ======== SEÇÃO 7 - CHAMADA FINAL ======== -->
+    <div class="contato-esquerda">
+      <h2>Transforme a gestão da sua escola!</h2>
+
+      <div class="contato-card">
+        <p>
+          O SEDU conecta pessoas, dados e estratégias educacionais.
+        Solicite uma apresentação e descubra como nossa plataforma pode melhorar o 
+        acompanhamento do aluno, reduzir a evasão e apoiar decisões pedagógicas mais humanas e eficientes.
+        </p>
+
+        <p><strong>Equipe SEDU</strong><br></p>
+        <p>Preencha o formulário ao lado e nossa equipe entrará em contato com você</p>
+      </div>
+    </div>
+
+    <!-- FORMULÁRIO (LADO DIREITO) -->
+    <div class="contato-form">
+      <form id="contato-form">
+        <input id="nome" name="nome" type="text" placeholder="Nome">
+        <input id="email" name="email" type="email" placeholder="* E-mail" required>
+        <input id="telefone" name="telefone" type="tel" placeholder="* (DDD) + Número" required>
+
+        <select id="perfil" name="perfil">
+          <option value="">Selecione uma opção</option>
+          <option value="Diretor">Diretor</option>
+          <option value="Professor">Professor</option>
+          <option value="Coordenador">Coordenador</option>
+          <option value="Responsável">Responsável</option>
+        </select>
+
+        <textarea id="mensagem" name="mensagem" placeholder="* Deixe sua mensagem" required></textarea>
+
+        <button type="submit">Enviar</button>
+        <div id="contato-feedback" aria-live="polite" style="margin-top:8px"></div>
+      </form>
+    </div>
+
+  </div>
+</section>
+<!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- COLUNA 1: SOBRE -->
+      <div class="footer-column">
+        <h3>Sobre SEDU</h3>
+        <p>Sistema Educacional de Dados Unificados dedicado a transformar a educação através da tecnologia e inovação.</p>
+        <div class="footer-logo">
+          <img src="{{ url_for('static', filename='img/SEDU LOGO.png') }}" alt="SEDU Logo">
+        </div>
+      </div>
+
+      <!-- COLUNA 2: LINKS RÁPIDOS -->
+      <div class="footer-column">
+        <h3>Links Rápidos</h3>
+        <ul class="footer-links">
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUNA 3: CONTATO -->
+      <div class="footer-column">
+        <h3>Entre em Contato</h3>
+        <p><strong>Email:</strong> contato@sedu.com.br</p>
+        <p><strong>Telefone:</strong> (61) 98765-4321</p>
+        <p><strong>Endereço:</strong> Brasília, DF</p>
+        <p><strong>Horário:</strong> Seg - Sex, 8h às 18h</p>
+      </div>
+
+      <!-- COLUNA 4: REDES SOCIAIS -->
+      <div class="footer-column">
+        <h3>Siga-nos</h3>
+        <div class="social-icons">
+            <a href="#" title="Facebook">
+            <img src="{{ url_for('static', filename='img/icon_facebook.png') }}" alt="Facebook">
+          </a>
+          <a href="#" title="Instagram">
+            <img src="{{ url_for('static', filename='img/icon_instagram.png') }}" alt="Instagram">
+          </a>
+          <a href="#" title="Twitter">
+            <img src="{{ url_for('static', filename='img/icon_twitter1.png') }}" alt="Twitter">
+          </a>
+          <a href="#" title="LinkedIn">
+            <img src="{{ url_for('static', filename='img/icon_linkedin.png') }}" alt="LinkedIn">
+          </a>
+          <a href="#" title="YouTube">
+            <img src="{{ url_for('static', filename='img/icon_youtube.png') }}" alt="YouTube">
+          </a>
+          <a href="#" title="WhatsApp">
+            <img src="{{ url_for('static', filename='img/icon_whatsapp.png') }}" alt="WhatsApp">
+          </a>
+          <a href="#" title="TikTok">
+            <img src="{{ url_for('static', filename='img/icon_tiktok.png') }}" alt="TikTok">
+          </a>
+          <a href="#" title="Email">
+            <img src="{{ url_for('static', filename='img/icon_e-mail.png') }}" alt="Email">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVISOR -->
+    <hr class="footer-divider">
+
+    <!-- FOOTER BOTTOM -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 SEDU - Sistema Educacional de Dados Unificados. Todos os direitos reservados.</p>
+      <p>Desenvolvido com <span class="heart">❤</span> por SEDU</p>
+    </div>
+  </footer>
+  <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+  <!-- EmailJS SDK (CDN) - versão atual suportada -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // Inicializa EmailJS com a sua chave pública (public key)
+    (function(){
+      if (window.emailjs) {
+        try { emailjs.init('DesFll64BpRKGpdCt'); } catch(e) { console.warn('EmailJS init falhou', e); }
+      }
+    })();
+  </script>
+</body>
+</html>

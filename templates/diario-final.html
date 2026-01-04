@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diário de Classe - Escola Exemplo</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/diario-final.css') }}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+ <header>
+  <h1><i class="fa-solid fa-users"></i> Diario de Classe </h1>
+
+  <!-- Nav desktop -->
+  <nav class="nav-principal">
+    <a href="javascript:history.back()">Voltar</a>
+  <a href="{{ url_for('landing') }}">Sair</a>
+  </nav>
+
+  <!-- Botão Hambúrguer -->
+  <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Menu Mobile -->
+  <nav id="main-nav" class="hamburger-nav" aria-hidden="true">
+     <a href="javascript:history.back()">Voltar</a>
+  <a href="{{ url_for('landing') }}">Sair</a>
+  </nav>
+</header>
+
+  <!-- ======== CONTAINER PRINCIPAL ======== -->
+  <div class="container">
+    <main>
+
+      <!-- ======== Grid topo: Atividades e Lista de Alunos ======== -->
+      <div class="grid-topo">
+
+        <!-- Configuração de Atividades -->
+        <section class="card destaque" id="sec-config"
+          ondblclick="abrirModal('Configuração de Atividades e Notas', this, event)">
+          <h2>Configuração de Atividades & Lançamento de Notas</h2>
+
+          <!-- REGISTRO DE ATIVIDADES -->
+          <form id="formAtividades">
+            <label>Tipo da Atividade:</label>
+            <select id="tipoAtividade">
+              <option disabled selected>Selecione</option>
+              <option>Provas - 1º Bimestre</option>
+              <option>Provas - 2º Bimestre</option>
+              <option>Provas - 3º Bimestre</option>
+              <option>Provas - 4º Bimestre</option>
+              <option>Atividades Extras</option>
+              <option>Prova de Recuperação</option>
+              <option>Trabalho Extra</option>
+              <option>Recuperação Final</option>
+            </select>
+
+            <label>Data da Atividade:</label>
+            <input type="date" id="dataAtividade">
+
+            <label>Observações:</label>
+            <textarea id="observacaoAtividade" placeholder="Digite uma observação..."></textarea>
+
+            <hr style="margin:20px 0;">
+
+            <!-- CONFIGURAÇÃO DO LANÇAMENTO DE NOTAS -->
+            <h3>Lançamento de Notas - Configuração Geral</h3>
+
+            <label>Disciplina:</label>
+            <select id="disciplinaLancamento">
+              <option disabled selected>Selecione</option>
+              <option>Matemática</option>
+              <option>Português</option>
+              <option>História</option>
+            </select>
+
+            <label>Data Geral das Notas:</label>
+            <input type="date" id="dataGeral" onchange="aplicarDataGeral()">
+        </section>
+        </form>
+
+        <!-- ============================= -->
+        <!-- CARD 2: Lista de Alunos -->
+        <!-- ============================= -->
+        <section class="card" id="sec-lancar" ondblclick="abrirModal('Lista de Alunos', this, event)">
+          <h2>Lançar Notas dos Alunos</h2>
+          <div id="listaAlunos" class="lista-alunos"></div>
+          <!-- preenchido via JS -->
+          <button type="button" class="b-1" id="btnSalvarTodos">Salvar Todos</button>
+        </section>
+
+      </div>
+
+      <!-- ============================= -->
+      <!-- CARD 3: Histórico -->
+      <!-- ============================= -->
+
+
+      <!-- Histórico de Lançamentos -->
+      <section class="card" id="sec-historico" ondblclick="abrirModal('Histórico de Lançamentos', this, event)">
+        <h2>Histórico de Lançamentos</h2>
+        
+        <div id="tabelaHistorico" class="tabela-grid">
+          <div class="linha titulo">
+            <div>Aluno</div>
+            <div>Tipo da Atividade</div>
+            <div>Data</div>
+            <div>Disciplina</div>
+            <div>Nota</div>
+            <div>Data de Lançamento</div>
+            <div>Observação</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ======== FOOTER ======== -->
+  <footer>
+    © 2025 Escola Exemplo. Todos os direitos reservados.
+  </footer>
+
+   <!-- ============ MODAL ============ -->
+    <div id="modalOverlay" class="modal-overlay"></div>
+
+    <div id="modal" class="modal">
+
+        <div class="modal-topo">
+            <h3 id="modalTitle"></h3>
+
+            <div class="botoes-pop-up">
+                <button id="modalExpand" class="modal-expand">⛶</button>
+                <button id="modalClose" class="modal-close">&times;</button>
+            </div>
+        </div>
+
+        <div id="modalBody"></div>
+    </div>
+
+  <!-- ======== SCRIPT UNIFICADO ======== -->
+  <script src="{{ url_for('static', filename='js/diario-final.js') }}" defer></script>
+</body>
+
+</html>

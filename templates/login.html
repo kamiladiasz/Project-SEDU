@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEDU - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+</head>
+
+<body>
+
+  <div class="card login-card">
+ <!-- Marca / Logo (decorativa, não interfere no foco) -->
+    <h1>Bem-vindo</h1>
+    <p class="lead">Acesse sua conta para continuar</p>
+
+    <form action="{{ url_for('login') }}" method="POST">
+      <div class="label-group">
+        <label for="usuario">Usuário ou Email</label>
+        <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário">
+      </div>
+
+      <div class="label-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+      </div>
+
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+
+    {% if erro %}
+    <div class="msg error">{{ erro }}</div>
+    {% endif %}
+
+    <div class="links">
+      <a class="link" href="{{ url_for('cadastro') }}">Esqueci a senha</a>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2025 SEDU - Sistema Educacional de Dados Unificados
+  </footer>
+
+</body>
+
+</html>

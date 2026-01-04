@@ -1,0 +1,203 @@
+/* style.css */
+
+/* Variáveis de cores */
+:root {
+  --azul1: #164757;
+  --azul2: #2395ba;
+  --turquesa: #00d8c6;
+  --puroturquesa: #01c290;
+  --branco: #ffffff;
+  --cinza: #f1f5f9;
+  --amarelo: #ffc94d;
+}
+
+/* Reset simples */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(135deg, var(--azul1) 0%, var(--puroturquesa) 100%);
+  color: var(--azul1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(35, 149, 186, 0.15);
+  border: 1px solid rgba(35, 149, 186, 0.1);
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  margin-bottom: 18px;
+  font-size: 20px;
+  color: var(--azul2);
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+p.lead {
+  color: var(--azul1);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-size: 13px;
+  color: var(--azul1);
+}
+
+/* Inputs de email */
+input[type="email"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(35, 149, 186, 0.25);
+  background: var(--cinza);
+  color: var(--azul1);
+  font-size: 15px;
+  outline: none;
+  transition: box-shadow 0.18s, transform 0.12s;
+}
+
+input[type="email"]::placeholder {
+  color: rgba(35, 149, 186, 0.5);
+}
+
+input[type="email"]:focus {
+  box-shadow: 0 6px 18px rgba(35, 149, 186, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Radio buttons estilizados */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(35, 149, 186, 0.25);
+  background: var(--cinza);
+  color: var(--azul1);
+  font-size: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.18s, transform 0.12s;
+}
+
+.radio-label input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--azul2);
+  cursor: pointer;
+}
+
+.radio-label:hover,
+.radio-label:has(input[type="radio"]:focus) {
+  box-shadow: 0 6px 18px rgba(35, 149, 186, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Botões */
+.btn {
+  display: inline-block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(224.78deg, var(--azul2) 8.12%, var(--azul1) 92.21%);
+  color: var(--branco);
+  text-align: center;
+  font-size: 15px;
+  transition: opacity 0.12s, transform 0.12s;
+  box-shadow: 0px 17px 17px rgba(35, 149, 186, 0.13),
+              0px 5.125px 5.125px rgba(35, 149, 186, 0.09),
+              0px 2.12866px 2.12866px rgba(35, 149, 186, 0.07),
+              0px 0.769896px 0.769896px rgba(35, 149, 186, 0.05);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.muted {
+  font-size: 13px;
+  color: var(--azul1);
+  margin-top: 8px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+a.link {
+  color: var(--azul2);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a.link:hover {
+  text-decoration: underline;
+}
+
+.msg {
+  display: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.msg.success {
+  background: rgba(0, 216, 198, 0.12); /* usando --turquesa */
+  color: var(--puroturquesa);
+  border: 1px solid rgba(0, 216, 198, 0.18);
+}
+
+.msg.error {
+  background: rgba(255, 201, 77, 0.08); /* usando --amarelo */
+  color: var(--amarelo);
+  border: 1px solid rgba(255, 201, 77, 0.16);
+}
+
+@media (max-width: 420px) {
+  .card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+}

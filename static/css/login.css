@@ -1,0 +1,298 @@
+/* =========================================================
+   Variáveis do sistema — herdadas do design principal
+   ========================================================= */
+:root {
+  --cor-primaria: #164757;
+  --cor-secundaria: #2395ba;
+  --cor-acento: #00d8c6;
+  --cor-acento-escuro: #01c290;
+
+  --cor-branco: #ffffff;
+  --cor-cinza-claro: #f1f5f9;
+
+  --rgb-secundaria: 35, 149, 186;
+
+  --bg-card: var(--cor-branco);
+  --bg-input: var(--cor-cinza-claro);
+
+  --bd-input: rgba(35, 149, 186, 0.25);
+  --bd-sucesso: rgba(0, 216, 198, 0.18);
+  --bd-alerta: rgba(255, 201, 77, 0.16);
+}
+
+/* =========================================================
+   Reset
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria), var(--cor-acento-escuro));
+  background-size: 200% 200%;
+  animation: aguaMove 10s ease-in-out infinite;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+  color: #1e293b;
+}
+
+.logo-mark {
+  position: absolute;
+  top: 50%;              /* centraliza verticalmente */
+  left: 50%;             /* centraliza horizontalmente */
+  left: 20%;
+  transform: translate(-50%, -50%);
+  width: 700px;          /* ajuste como preferir */
+  opacity: 0.70;         /* deixa mais suave */
+  z-index: -1;           /* FICA ATRÁS do card */
+  pointer-events: none;  /* evita clique acidental */
+}
+/* Efeito animado do fundo */
+@keyframes aguaMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* =========================================================
+   Card de Login
+   ========================================================= */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+
+  background: var(--bg-card);
+  padding: 28px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(var(--rgb-secundaria), 0.1);
+  box-shadow: 0 10px 30px rgba(var(--rgb-secundaria), 0.15);
+  text-align: center;
+}
+
+h1 {
+  font-size: 27px;
+  margin-bottom: 20px;
+
+  color: var(--cor-primaria);
+}
+
+.lead {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--cor-primaria);
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   Formulário
+   ========================================================= */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cor-primaria);
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+
+  background: var(--bg-input);
+  border: 1px solid var(--bd-input);
+
+  font-size: 15px;
+  color: var(--cor-primaria);
+
+  transition: box-shadow 0.2s, transform 0.12s;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 6px 18px rgba(var(--rgb-secundaria), 0.25);
+  transform: translateY(-1px);
+}
+
+input::placeholder {
+  color: rgba(var(--rgb-secundaria), 0.6);
+
+}
+
+/* =========================================================
+   Botão Principal
+   ========================================================= */
+.btn {
+  width: 100%;
+  margin-top: 10px;
+
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(225deg, var(--cor-secundaria), var(--cor-primaria));
+  color: var(--cor-branco);
+
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow:
+    0px 17px 17px rgba(var(--rgb-secundaria), 0.13),
+    0px 5px 5px rgba(var(--rgb-secundaria), 0.09),
+    0px 2px 2px rgba(var(--rgb-secundaria), 0.07);
+
+  transition: opacity 0.2s, transform 0.12s;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* =========================================================
+   Feedback
+   ========================================================= */
+.msg {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.msg.error {
+  background: rgba(255, 201, 77, 0.08);
+  color: #ffc94d;
+  border: 1px solid rgba(255, 201, 77, 0.16);
+}
+
+/* =========================================================
+   Links
+   ========================================================= */
+.links {
+  margin-top: 18px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  font-size: 14px;
+  color: var(--cor-secundaria);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   Rodapé
+   ========================================================= */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: var(--cor-branco);
+  padding: 12px 0;
+  text-align: center;
+}
+
+/* POSIÇÃO GLOBAL DA LOGO (padrão mobile: topo e centralizada) */
+.logo-mark {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(180px, 40vw, 420px);
+  opacity: 0.70;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* DESKTOP — Lado Esquerdo */
+@media (min-width: 900px) {
+  .logo-mark {
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: clamp(250px, 28vw, 480px);
+  }
+}
+
+/* =========================================================
+   NOTEBOOKS — Resolução 1366×768 (MDPI)
+   ========================================================== */
+@media (min-width: 1280px) and (max-width: 1440px) and (max-height: 800px) {
+
+  body {
+    padding: 32px;
+    justify-content: center;     /* mantém o card no centro */
+    align-items: center;
+  }
+
+  /* Card mais proporcional para notebooks */
+  .login-card {
+    max-width: 440px;
+    padding: 32px;
+    border-radius: 16px;
+  }
+
+  .login-card h1 {
+    font-size: 28px;
+  }
+
+  .login-card .lead {
+    font-size: 18px;
+  }
+
+  input {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .btn {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  /* Logo ajustada para notebooks */
+  .logo-mark {
+    top: 50%;
+    left: 12%;
+    transform: translateY(-50%);
+    width: clamp(260px, 24vw, 380px);
+    opacity: 0.55; /* mais suave ainda */
+  }
+
+  /* Links */
+  .links {
+    gap: 20px;
+  }
+}

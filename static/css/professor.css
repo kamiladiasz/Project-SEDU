@@ -1,0 +1,646 @@
+/* ======== VARIÁVEIS ======== */
+:root {
+  --azul1: #164757;
+  --azul2: #2395ba;
+  --turquesa: #00d8c6;
+  --puroturquesa: #01c290;
+  --branco: #ffffff;
+  --cinza: #f1f5f9;
+  --cinzaClaro: #e5e7eb;
+  --amarelo: #ffc94d;
+  --vermelho: #ff5454;
+  --verde: #64de4e;
+}
+
+/* ======== RESET ======== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Remove scroll horizontal e impede que algo ultrapasse a tela */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+/* ======== BODY ======== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--cinza);
+  color: #333;
+}
+
+.container {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: auto;
+  padding: var(--space-7) var(--space-5);
+}
+
+/* ======== HEADER ======== */
+/* =========================================================
+   HEADER + NAV + HAMBÚRGUER — PADRÃO OFICIAL
+========================================================= */
+
+/* HEADER */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, var(--azul1), var(--azul2));
+  color: var(--branco);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* NAV DESKTOP */
+.nav-principal {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-principal a {
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity .3s;
+}
+
+.nav-principal a:hover {
+  opacity: .8;
+}
+
+/* BOTÃO HAMBÚRGUER */
+.hamburger {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all .3s ease;
+}
+
+/* MENU MOBILE */
+.hamburger-nav {
+  position: absolute;
+  top: 70px;
+  right: 16px;
+  left: 16px;
+  background: linear-gradient(135deg, var(--azul1), var(--azul2));
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px) scale(.98);
+  transition: all .25s ease;
+}
+
+.hamburger-nav a {
+  color: var(--branco);
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.hamburger-nav a:hover {
+  background: rgba(255,255,255,.15);
+}
+
+/* ESTADO ABERTO */
+.hamburger-nav.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-principal {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+
+/* ======== GRID DO MAIN ======== */
+main {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(380px, 450px));
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+  padding-bottom: 40px;
+}
+
+/* ======== CARDS ======== */
+.card,
+.card-chamada {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: .2s;
+  margin: 15px 0;
+  /* (mantido da versão duplicada) */
+}
+
+/* ======== CARD MINHAS TURMAS - TABELA ======== */
+.card.minhas-turmas table {
+  width: 100%;
+  border-collapse: separate;
+  /* permite espaçamento entre células */
+  border-spacing: 6px;
+  /* vertical: 6px entre linhas */
+}
+
+.card.minhas-turmas th,
+.card.minhas-turmas td {
+  padding: 12px 16px;
+  text-align: center;
+  border: none;
+  /* remove bordas para efeito clean */
+  background: #ffffff;
+  /* padrão para células, exceto th */
+  border-radius: 8px;
+}
+
+.card.minhas-turmas th {
+  background: var(--turquesa);
+  /* cor de destaque */
+  color: var(--branco);
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+  /* arredondamento apenas no topo da tabela */
+}
+
+
+.card:hover {
+  transform: translateY(-4px);
+  cursor: pointer;
+}
+
+.card h2,
+.card-chamada h2 {
+  color: var(--azul1);
+  margin-bottom: 14px;
+}
+
+/* ======== ALERTAS MAIS VIVOS ======== */
+.alerta3 {
+  background: var(--verde);
+}
+
+.alerta2 {
+  background: var(--amarelo);
+}
+
+.alerta1 {
+  background: var(--vermelho);
+
+}
+
+.alerta2,
+.alerta1,
+.alerta3 {
+  color: #000000;
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#graficoNotas {
+  max-height: 200px;
+  width: 100%;
+}
+
+
+/* ======== TABELAS ======== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--cinzaClaro);
+
+}
+
+th {
+  background: var(--turquesa);
+  color: var(--branco);
+}
+
+/* ======== FORMULÁRIOS ======== */
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-family: inherit;
+  background: var(--branco);
+}
+
+textarea {
+  resize: none;
+}
+
+/* Lista chamada */
+.linha-aluno {
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* ======== BOTÕES ======== */
+button {
+  background: var(--puroturquesa);
+  color: var(--branco);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+
+button:not(.hamburger):hover {
+  background: var(--turquesa);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+#btn-diarioturma {
+  font-size: 12px;
+  padding: 8px;
+  width: 90px;
+  margin: 4px;
+  
+}
+
+
+#btn-relatorio {
+  gap: 100px;
+}
+
+@media (max-width: 600px) {
+  #card-relatorio button {
+    margin-bottom: 10px;
+    /* Espaço entre eles */
+    width: 100%;
+    /* deixa os botões mais bonitos no mobile */
+  }
+
+  #card-relatorio button:last-child {
+    margin-bottom: 0;
+    /* remove o espaço depois do último */
+  }
+}
+
+/* ======== FOOTER ======== */
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px;
+  background: var(--azul1);
+  color: var(--branco);
+  text-align: center;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 800px) {
+  main {
+    padding: 40px;
+    gap: 25px;
+  }
+
+  header h1 {
+    font-size: 18px;
+  }
+
+  nav a {
+    margin-left: 12px;
+  }
+}
+
+#lista-alunos {
+  margin-top: 15px;
+  background: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  height: auto;
+}
+
+.linha-aluno {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.nome-aluno {
+  font-weight: bold;
+  color: #164757;
+  font-size: 14px;
+}
+
+.linha-aluno label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #164757;
+  font-size: 0.9rem;
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  border-radius: 4px;
+  transition: .4s;
+}
+
+/* Animação do X */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* MENU DESKTOP */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 68px;
+    right: 0;
+    width: 250px;
+    background: var(--azul1);
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px;
+    border-radius: 0 0 0 18px;
+    box-shadow: -6px 6px 20px rgba(0, 0, 0, 0.2);
+
+    transform: translateX(110%);
+    transition: .4s ease;
+    z-index: 1000;
+  }
+
+  .nav a {
+    font-size: 16px;
+    color: white;
+  }
+
+  .nav.open {
+    transform: translateX(0);
+  }
+}
+
+
+
+/* =========================================================
+   AJUSTE UNIVERSAL PARA CELULAR — 1 COLUNA RESPONSIVA
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ----------- Layout geral ----------- */
+  .container,
+  main {
+    width: 100%;
+    max-width: 480px;
+    /* limite confortável para celular */
+    margin: 0 auto;
+    /* centraliza sem colar nas bordas */
+    padding: 16px;
+    /* espaçamento lateral */
+  }
+
+  /* ----------- Cards em 1 coluna ----------- */
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .card {
+    width: 100%;
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  /* ----------- Títulos ----------- */
+  .card h2 {
+    font-size: 20px;
+  }
+
+  /* ----------- Tabelas ----------- */
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  /* ----------- Gráficos (Chart.js) ----------- */
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ----------- Textos ----------- */
+  .info-aluno h3 {
+    font-size: 18px;
+  }
+
+  /* ----------- Inputs e selects ----------- */
+  select,
+  textarea,
+  input {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  /* ----------- Botões ----------- */
+  button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  /* ----------- MENU RESPONSIVO OFICIAL ----------- */
+  nav {
+    display: none;
+  }
+
+  .nav-responsivo {
+    width: 100%;
+    max-width: 480px;
+    /* igual ao container */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .nav-responsivo a {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+  }
+}
+
+
+/* =========================================================
+   TOAST / ALERTA PADRONIZADO – INFERIOR DIREITA
+   ========================================================= */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  color: #fff;
+  padding: 12px 18px;
+  background: #ffffff;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp .3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================== */
+/* TOAST — POSIÇÃO MOBILE */
+/* ===================== */
+@media (max-width: 600px) {
+  .toast-container {
+    bottom: 0;
+    /* gruda na base baixa*/
+    left: 50%;
+    /* centraliza */
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* força centralização */
+    gap: 8px;
+  }
+
+  .toast {
+    width: 95%;
+    /* ocupa quase toda a barra superior */
+    text-align: center;
+    /* centraliza texto */
+    transform: translateY(20px);
+    /* animação vindo de baixo */
+  }
+}
+

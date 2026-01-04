@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste Hamburguer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Poppins, sans-serif;
+      background: #f5f5f5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #164757, #2395ba);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: 18px;
+    }
+
+    .nav-principal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-principal a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      width: 40px;
+      height: 40px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 2000;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 4px;
+      width: 100%;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-nav {
+      position: fixed;
+      top: 65px;
+      right: 16px;
+      left: 16px;
+      width: auto;
+      background: linear-gradient(135deg, #164757, #2395ba);
+      padding: 12px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px) scale(.98);
+      transition: all .25s ease;
+      z-index: 1999;
+    }
+
+    .hamburger-nav a {
+      color: white;
+      padding: 8px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .hamburger-nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .hamburger-nav.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    @media (max-width: 900px) {
+      .nav-principal {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .test-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Teste Hamburguer</h1>
+    <nav class="nav-principal">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <button id="hamburger" class="hamburger" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="main-nav" class="hamburger-nav">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="test-box">
+      <h2>Teste do Hamburguer</h2>
+      <p>Redimensione a tela para menos de 900px e clique no hamburguer.</p>
+      <p>Verifique o console (F12) para mensagens de debug.</p>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("hamburger");
+      const nav = document.getElementById("main-nav");
+
+      console.log("Elementos encontrados:", { btn, nav });
+
+      if (btn && nav) {
+        btn.addEventListener("click", () => {
+          const aberto = nav.classList.toggle("open");
+          btn.setAttribute("aria-expanded", aberto);
+          nav.setAttribute("aria-hidden", !aberto);
+          console.log("Menu:", aberto ? "ABERTO" : "FECHADO");
+          console.log("Classes do nav:", nav.className);
+        });
+      } else {
+        console.error("Hamburguer ou nav não encontrados!");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Responsável - Escola Exemplo</title>
+
+  <!-- CSS principal -->
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsavel.css') }}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- CSS do menu hambúrguer -->
+  <link rel="stylesheet" href="components/hamburger.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+ <header>
+  <h1><i class="fa-solid fa-users"></i> Painel do Responsavel</h1>
+
+  <!-- Nav desktop -->
+  <nav class="nav-principal">
+    <a href="{{ url_for('index_page') }}">Portal</a>
+    <a href="{{ url_for('chat_page') }}">Mensagens</a>
+        <a href="{{ url_for('login') }}">Deslogar</a>
+
+    <a href="{{ url_for('landing') }}">Sair</a>
+  </nav>
+
+  <!-- Botão Hambúrguer -->
+  <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Menu Mobile -->
+  <nav id="main-nav" class="hamburger-nav" aria-hidden="true">
+   <a href="{{ url_for('index_page') }}">Portal</a>
+    <a href="{{ url_for('chat_page') }}">Mensagens</a>
+        <a href="{{ url_for('login') }}">Deslogar</a>
+
+    <a href="{{ url_for('landing') }}">Sair</a>
+  </nav>
+</header>
+ 
+  <!-- ================= CONTAINER PRINCIPAL ================= -->
+  <div class="container">
+    <main class="dashboard">
+
+      <!-- ========== COLUNA ESQUERDA ========== -->
+      <aside class="coluna-pequena">
+
+        <section class="card" ondblclick="abrirModal('Perfil Familiar', this, event)">
+          <h2>Perfil Familiar</h2>
+          <p><strong>Contatos autorizados:</strong> 3/5</p>
+          <button class="b-1">Atualizar Informações</button>
+        </section>
+
+        <section class="card" ondblclick="abrirModal('Comunicação com a Escola', this, event)">
+          <h2>Comunicação com Professores</h2>
+
+          <select id="comunicacao-destino" class="input-comunicacao" style="margin-bottom:12px;">
+            <option disabled selected>Selecione o destinatário</option>
+            <option value="nome1@gmail.com">Nome 1 - nome1@gmail.com</option>
+            <option value="nome2@gmail.com">Nome 2 - nome2@gmail.com</option>
+          </select>
+
+          <textarea id="comunicacao-texto" placeholder="Envie uma mensagem para o professor..."></textarea>
+          <button class="b-1" id="comunicacao-enviar">Enviar</button>
+        </section>
+
+        <section class="card" ondblclick="abrirModal('Orientações e Recursos', this, event)">
+          <h2>Orientações e Recursos</h2>
+          <ul>
+            <li>Dicas de acompanhamento familiar</li>
+            <li>Materiais de apoio pedagógico</li>
+            <li>Serviços de apoio psicológico</li>
+          </ul>
+        </section>
+
+        <section class="card" ondblclick="abrirModal('Avisos da Escola', this, event)">
+          <h2>Avisos da Escola</h2>
+          <ul>
+            <li><i class="fa-solid fa-bell"></i> Reunião de Pais na próxima sexta-feira às 18h</li>
+            <li><i class="fa-solid fa-bell"></i> Prova de Ciências na terça-feira</li>
+          </ul>
+        </section>
+
+      </aside>
+
+      <!-- ========== COLUNA DIREITA ========== -->
+      <section class="coluna-grande">
+
+        <section class="card destaque" ondblclick="abrirModal('Painel Familiar', this, event)">
+          <h2>Painel Familiar</h2>
+          <div class="info-aluno">
+            <h3>Maria Souza <span>(Mãe)</span></h3>
+            <p>Média Geral: <strong>8,7</strong> | Frequência: <strong>95%</strong></p>
+
+            <div class="alerta">
+              <i class="fa-solid fa-exclamation-triangle icon" aria-hidden="true"></i>
+              Frequência baixa em Matemática (75%)
+            </div>
+          </div>
+        </section>
+
+        <section class="card" ondblclick="abrirModal('Filho: João Silva', this, event)">
+          <h2>Filho: João Silva</h2>
+          <p><strong>Turma:</strong> 6º Ano A</p>
+          <p><strong>Disciplina principal:</strong> Matemática</p>
+        </section>
+
+        <section class="card" ondblclick="abrirModal('Notas Recentes', this, event)">
+          <h2>Notas Recentes</h2>
+
+          <table class="tabela">
+            <thead>
+              <tr>
+                <th>Disciplina</th>
+                <th>Nota</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Matemática</td>
+                <td>7,5</td>
+                <td>✅</td>
+              </tr>
+              <tr>
+                <td>Português</td>
+                <td>8,0</td>
+                <td>✅</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="acoes-relatorio">
+            <button class="b-1">📘 Ver Boletim Digital</button>
+          </div>
+
+          <canvas id="graficoDesempenho" class="grafico"></canvas>
+        </section>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    © 2025 Escola Exemplo - Responsáveis
+  </footer>
+
+  <!-- ================= MODAL ================= -->
+  <div id="modalOverlay" class="modal-overlay"
+    style="position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none;">
+  </div>
+
+  <div id="modal" class="modal" style="position:fixed; top:50%; left:50%;
+    transform:translate(-50%,-50%) scale(.9);
+    background:#fff; padding:18px; border-radius:12px;
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+    max-width:92%; width:720px; display:none; max-height:85vh; overflow:auto;">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <h3 id="modalTitle" style="margin:0; font-size:1.1rem; color:#164757;"></h3>
+
+      <div>
+        <button id="modalExpand" class="modal-expand b-1" title="Expandir"
+          style="margin-right:8px; padding:6px 8px; border-radius:6px; border:none;
+          background:#2395ba; color:#fff; cursor:pointer;">⛶</button>
+
+        <button id="modalClose" class="modal-close b-1" title="Fechar"
+          style="padding:6px 8px; border-radius:6px; border:none;
+          background:#ff5454; color:#fff; cursor:pointer;">&times;</button>
+      </div>
+    </div>
+
+    <div id="modalBody"></div>
+  </div>
+
+  <script>
+    // Botão dentro do card "Perfil Familiar"
+    const btnAtualizar = document.querySelector(
+      'section.card button'
+    );
+
+    btnAtualizar.addEventListener('click', (event) => {
+      event.stopPropagation(); // impede conflito com o dblclick do card
+
+      modalTitle.textContent = "Atualizar Informações da Família";
+
+      modalBody.innerHTML = `
+      <div class="form-atualizar">
+
+        <label>Nome do Responsável</label>
+        <input type="text" placeholder="Digite o nome">
+
+        <label>Telefone</label>
+        <input type="text" placeholder="(00) 00000-0000">
+
+        <label>E-mail</label>
+        <input type="email" placeholder="email@example.com">
+
+        <label>Quantidade de contatos autorizados</label>
+        <input type="number" min="0" max="5">
+
+        <button id="salvarInfo" class="btn-salvar">Salvar Alterações</button>
+      </div>
+    `;
+
+      modal.style.display = 'block';
+      modalOverlay.style.display = 'block';
+      setTimeout(() => {
+        modal.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 10);
+
+      // botão salvar
+      document.getElementById('salvarInfo').addEventListener('click', () => {
+        showToast("Informações atualizadas com sucesso!", "success");
+        fecharModal();
+      });
+    });
+  </script>
+
+  <!-- ================= JS DO SISTEMA ================= -->
+  <script src="{{ url_for('static', filename='js/responsavel.js') }}"></script>
+
+
+</body>
+</html>

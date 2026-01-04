@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Aluno</title>
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/alunos.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+ 
+<!-- ================= HEADER ================= -->
+<header>
+  <h1><i class="fa-solid fa-users"></i> Painel do Aluno</h1>
+
+  <!-- Nav desktop -->
+  <nav class="nav-principal">
+    <a href="{{ url_for('index_page') }}">Portal</a>
+    <a href="{{ url_for('chat_page') }}">Mensagens</a>
+    <a href="{{ url_for('login') }}">Deslogar</a>
+    <a href="{{ url_for('landing') }}">Sair</a>
+  </nav>
+
+  <!-- Botão Hambúrguer -->
+  <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Menu Mobile -->
+  <nav id="main-nav" class="hamburger-nav" aria-hidden="true">
+    <a href="{{ url_for('index_page') }}">Portal</a>
+    <a href="{{ url_for('chat_page') }}">Mensagens</a>
+    <a href="{{ url_for('login') }}">Deslogar</a>
+    <a href="{{ url_for('landing') }}">Sair</a>
+  </nav>
+
+</header>
+
+  <div class="container">
+    <main>
+
+      <!-- RESUMO DO ALUNO -->
+      <section class="card destaque" ondblclick="abrirModal('Resumo do Aluno', this, event)">
+        <h2>Resumo do Aluno</h2>
+        <div class="resumo-aluno">
+          <h3 id="aluno-nome">Isis Souza</h3>
+          <p><strong>Turma:</strong> <span id="aluno-turma">8º B</span></p>
+          <p><strong>Turno:</strong> <span id="aluno-turno">Manhã</span></p>
+          <p><strong>Ano/Serie</strong> <span id="aluno-serie">2025/8ª Serie</span></p>
+          <p><strong>Matrícula:</strong> <span id="aluno-matricula">2025A00123</span></p>
+          <p><strong>Situação:</strong> <span id="aluno-situacao">Ativo</span></p>
+          <p><strong>Faltas:</strong> <span id="aluno-faltas">5</span></p>
+          <p><strong>Resultado Final:</strong> <span id="aluno-resultado">Em Andamento</span></p>
+        </div>
+
+        <div class="alerta">
+          <i class="fa-solid fa-exclamation-triangle icon"></i>
+          Frequência em Matemática abaixo do recomendado (<span id="aluno-freq-matematica">88%</span>)
+        </div>
+      </section>
+
+      <!-- HISTÓRICO ESCOLAR -->
+      <section class="card" ondblclick="abrirModal('Histórico Escolar', this, event)">
+        <h2>Histórico Escolar</h2>
+
+        <table class="tabela">
+          <thead>
+            <tr>
+              <th>Disciplina</th>
+              <th>Média Nota</th>
+              <th>Faltas</th>
+              <th>Frequência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Matemática</td>
+              <td>7,5</td>
+              <td>2</td>
+              <td>88%</td>
+            </tr>
+            <tr>
+              <td>Português</td>
+              <td>9,0</td>
+              <td>2</td>
+              <td>87%</td>
+            </tr>
+            <tr>
+              <td>História</td>
+              <td>8,5</td>
+              <td>1</td>
+              <td>94%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <canvas id="graficoDesempenho" style="margin-top:20px;"></canvas>
+      </section>
+
+      <!-- COMUNICAÇÃO -->
+      <section class="card" id="card-comunicacao" ondblclick="abrirModal('Comunicação com Professores', this, event)">
+        <h2>Comunicação com Professores</h2>
+
+        <div id="input-envio">
+          <select id="selectProfessor">
+            <option class="op" selected disabled>Selecionar Professor</option>
+            <option class="op" >Professor(a) 1</option>
+            <option class="op" >Professor(a) 2</option>
+            <option class="op" >Professor(a) 3</option>
+          </select>
+        </div>
+
+        <textarea id="mensagemTexto" placeholder="Digite sua mensagem..."></textarea>
+
+        <button id="btnEnviar" >Enviar Mensagem</button>
+      </section>
+
+
+
+      <!-- RECURSOS -->
+      <section class="card" ondblclick="abrirModal('Recursos de Apoio', this, event)">
+        <h2>Recursos de Apoio</h2>
+        <ul>
+          <li>Material complementar de Matemática</li>
+          <li>Atividades de reforço</li>
+          <li>Atendimento pedagógico</li>
+        </ul>
+      </section>
+
+      <!-- AVISOS -->
+      <section class="card" ondblclick="abrirModal('Avisos Gerais', this, event)">
+        <h2>Avisos Gerais</h2>
+        <ul>
+          <li>📌 Reunião de pais na sexta-feira</li>
+          <li>📌 Prova de Ciências na terça-feira</li>
+        </ul>
+      </section>
+
+
+      <!-- Identificação do Aluno (dados que virão do BD futuramente) -->
+      <div class="info-aluno">
+
+        <section class="card" ondblclick="abrirModal('Dados do Aluno', this, event)">
+          <h2>Dados do Aluno</h2>
+          <p>      <img src="{{ url_for('static', filename='img/aluno-exemplo.png') }}" alt="logo-sedu"></p>
+          <p><strong>Nome Completo:</strong><span id="aluno-nome">Isis Souza</span></p>
+          <p><strong>Nome Social:</strong><span id="aluno-social">Isis Souza</span></p>
+          <p><strong>Data de Nascimento:</strong> <span id="aluno-nascimento">14/05/2007</span></p>
+          <p><strong>Gênero:</strong><span id="aluno-genero">Feminino</span></p>
+          <p><strong>Nacionalidade:</strong><span id="aluno-nacionalidade">Brasil</span></p>
+          <p><strong>Naturalidade:</strong><span id="aluno-naturalidade">Taguatinga/DF</span></p>
+          <p><strong>CPF:</strong> <span id="aluno-cpf">123.456.789-00</span></p>
+          <p><strong>RG:</strong> <span id="aluno-rg">123.456.789-00</span></p>
+          <p><strong>Certidão Nasc.</strong> <span id="aluno-certidao">031-02-66</span></p>
+          <p><strong>Contato: </strong><span id="aluno-contato"> (99) 9999-9999</span></p>
+          <p><strong>Email: </strong><span id="aluno-email"> (99) 9999-9999</span></p>
+          <p><strong>Endereço: </strong><span id="aluno-endereco"> Qnm 1 Conj 1 Casa 1</span></p>
+          <br>
+          <h3>Dados do Responsavel</h3>
+          <p><strong>Nome:</strong><span id="responsavel-nome"> Maria Silva (Mãe)</span></p>
+          <!--ao clicar no nome do responsavel, redirecionar para pagina de contato ou perfil do responsavel-->
+          <p><strong>Contato: </strong><span id="responsavel-contato"> (99) 9999-9999</span></p>
+        </section>
+      </div>
+      <!-- SAUDE -->
+      <section class="card" ondblclick="abrirModal('Informações de Saúde', this, event)">
+        <h2>Informações de Saúde</h2>
+        <ul>
+          <p><strong>Tipo Sanguineo: </strong><span id="aluno-sangue"> O+ </span></p>
+          <p><strong>Alergias:</strong><span id="aluno-alergia"> Abelha</span></p>
+          <p><strong>Restrições: </strong><span id="aluno-restricao"> Não </span></p>
+          <p><strong>Medicação Controlada: </strong><span id="aluno-medicacao"> Não </span></p>
+          <p><strong>Outra Condição: </strong><span id="aluno-condicao"> Não </span></p>
+          <p><strong>Plano de Saúde: </strong><span id="aluno-plano"> Bradesco </span></p>
+
+        </ul>
+      </section>
+
+    </main>
+  </div>
+ 
+  <footer>© 2025 Escola Exemplo. Todos os direitos reservados.</footer>
+
+  <!-- ================== MODAL ================== -->
+  <div id="modalOverlay" class="modal-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;">
+  </div>
+
+  <div id="modal" class="modal" style="position:fixed;top:50%;left:50%;transform:translate(-50%, -50%) scale(.9);
+        background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25);
+        max-width:92%;width:720px;display:none;max-height:85vh;overflow:auto;">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <h3 id="modalTitle" style="margin:0;font-size:1.1rem;color:#164757;"></h3>
+      <div style="display:flex;justify-content:end;align-items:center;margin-bottom:8px;"></div>
+      <div class="botoes-pop-up">
+        <button id="modalExpand" class="modal-expand" title="Expandir" style="margin-right:8px; padding:6px 8px; border-radius:6px; border:none;
+  background:#2395ba; color:#fff; cursor:pointer;">⛶</button>
+        <button id="modalClose" class="modal-close" title="Fechar" style="padding:6px 8px; border-radius:6px; border:none;
+  background:#ff5454; color:#fff; cursor:pointer;">&times;</button>
+      </div>
+    </div>
+
+    <div id="modalBody"></div>
+  </div>
+
+  <script>
+    /* ------------------- MODAL ------------------- */
+    const modal = document.getElementById("modal");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const btnClose = document.getElementById("modalClose");
+    const btnExpand = document.getElementById("modalExpand");
+
+    function abrirModal(t, el, e) {
+      const tag = e?.target?.tagName?.toLowerCase();
+      if (["select", "input", "textarea", "button", "option", "label"].includes(tag)) return;
+
+      modalTitle.textContent = t;
+      modalBody.innerHTML = el.innerHTML;
+
+      modal.style.display = "block";
+      modalOverlay.style.display = "block";
+      setTimeout(() => modal.style.transform = "translate(-50%, -50%) scale(1)", 10);
+    }
+
+    function fecharModal() {
+      modal.style.transform = "translate(-50%, -50%) scale(.9)";
+      modalOverlay.style.display = "none";
+      setTimeout(() => modal.style.display = "none", 160);
+    }
+
+    btnClose.onclick = fecharModal;
+    modalOverlay.onclick = fecharModal;
+
+    let expandido = false;
+    btnExpand.onclick = e => {
+      e.stopPropagation();
+      expandido = !expandido;
+      modal.style.width = expandido ? "95%" : "720px";
+      modal.style.maxHeight = expandido ? "95vh" : "85vh";
+    };
+
+
+    
+  </script>
+
+
+  <!-- JS UNIFICADO -->
+  <script src="{{ url_for('static', filename='js/alunos.js') }}" defer></script>
+</body>
+
+</html>

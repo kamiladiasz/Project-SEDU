@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mensagens</title>
+  <link rel="icon" href="{{ url_for('static', filename='Fav/favicon-96x96.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+</head>
+<body>
+
+<header class="topbar dark">
+  <h1><i class="fa-solid fa-comments"></i> Mensagens</h1>
+  <nav>
+  <a href="javascript:history.back()">Voltar</a>
+  <a href="{{ url_for('login') }}">Deslogar</a>
+  <a href="{{ url_for('landing') }}">Sair</a>
+</nav>
+
+</header>
+
+<div class="chat-layout">
+
+  <aside class="contacts">
+    <h3>Contatos</h3>
+    <ul>
+      <li data-user="lucas">Lucas Silva</li>
+      <li data-user="joao">Professor João</li>
+      <li data-user="maria">Maria Souza</li>
+    </ul>
+  </aside>
+
+  <section class="chat-window">
+
+    <!-- Nome do contato -->
+    <div class="chat-header" id="chatHeader">Lucas Silva</div>
+
+    <!-- ÁREA DAS MENSAGENS (AGORA COM id="messages") -->
+    <div class="messages" id="messages">
+      <div class="msg received">Olá! Tudo bem?</div>
+      <div class="msg sent">Tudo bem, sim!</div>
+    </div>
+
+    <!-- INDICADOR DE DIGITAÇÃO -->
+    <div id="typingIndicator" class="typing" style="display:none;"> ${contactName} está digitando...</div>
+
+    <!-- CAIXA DE ENVIO (AGORA COM IDs) -->
+    <div class="send-box">
+      <input id="msgInput" placeholder="Digite uma mensagem...">
+      <button id="sendBtn">Enviar</button>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  © 2025 Escola Exemplo
+</footer>
+
+<!-- Arquivo JavaScript -->
+  <script src="{{ url_for('static', filename='js/chat.js') }}" defer></script>
+
+</body>
+</html>

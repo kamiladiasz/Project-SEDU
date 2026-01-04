@@ -1,0 +1,708 @@
+/* =========================================================
+   DASHBOARD ESCOLAR - GESTOR (CSS OTIMIZADO E ORGANIZADO)
+   ========================================================= */
+
+/* ======== VARIÁVEIS ======== */
+:root {
+  --azul1: #164757;
+  --azul2: #2395ba;
+  --turquesa: #00d8c6;
+  --puroturquesa: #01c290;
+  --branco: #ffffff;
+  --cinza-claro: #f1f5f9;
+  --cinza-medio: #e5e7eb;
+  --amarelo: #ffc94d;
+  --vermelho: #ff3b30;
+  --cinza2: #444;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+
+  --max-width: 1200px;
+}
+
+/* ======== RESET ======== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--cinza-claro);
+  color: #333;
+  line-height: 1.5;
+}
+
+canvas {
+  width: 100% !important;
+  max-height: 300px;
+}
+
+/* ======== HEADER ======== */
+/* =========================================================
+   HEADER + NAV + HAMBÚRGUER — PADRÃO OFICIAL
+========================================================= */
+
+/* HEADER */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, var(--azul1), var(--azul2));
+  color: var(--branco);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* NAV DESKTOP */
+.nav-principal {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-principal a {
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity .3s;
+}
+
+.nav-principal a:hover {
+  opacity: .8;
+}
+
+/* BOTÃO HAMBÚRGUER */
+.hamburger {
+  background: red;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+#hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--branco) !important; /* força branco */
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* MENU MOBILE */
+.hamburger-nav {
+  position: absolute;
+  top: 70px;
+  right: 16px;
+  left: 16px;
+  background: linear-gradient(135deg, var(--azul1), var(--azul2));
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px) scale(.98);
+  transition: all .25s ease;
+}
+
+.hamburger-nav a {
+  color: var(--branco);
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.hamburger-nav a:hover {
+  background: rgba(255,255,255,.15);
+}
+
+/* ESTADO ABERTO */
+.hamburger-nav.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-principal {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+
+/* ======== MAIN ======== */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  padding: var(--space-7) var(--space-5);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+#main-nav a {
+  color: var(--branco) !important; /* força branco nos links */
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+/* ======== GRUPOS DE LINHAS ======== */
+#line-a {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+}
+
+#line-b {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.col-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+#line-c {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+}
+
+/* ======== CARD PADRÃO ======== */
+.card {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: var(--space-5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.destaque {
+  border-left: 6px solid var(--turquesa);
+  padding-left: var(--space-3);
+}
+
+/* ======== VISÃO GERAL ======== */
+.card-visao-geral .visao-geral-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.card-visao-geral img {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.card-visao-geral .info-visao {
+  flex: 1;
+  min-width: 200px;
+}
+
+.card-visao-geral .info-visao p {
+  margin-bottom: var(--space-2);
+  font-size: 15px;
+}
+
+/* ======== ALERTAS E BOXES ======== */
+.dashboard-turma {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.box-info {
+  padding: var(--space-4);
+}
+
+.alerta {
+  background: var(--amarelo);
+  padding: var(--space-3);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 500;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+/* Espaçamento extra entre elementos consecutivos */
+.card .box-info+.box-info,
+.card .alerta+.alerta {
+  margin-top: var(--space-3);
+}
+
+/* ======== TABELA PROFESSORES ======== */
+.tabela-professores {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tabela-professores th,
+.tabela-professores td {
+  padding: var(--space-2);
+  text-align: center;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.tabela-professores th {
+  background: var(--turquesa);
+  color: var(--branco);
+  font-weight: 600;
+}
+
+.tabela-professores tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.tabela-professores tr:hover td {
+  background: #eef7ff;
+}
+
+.table-wrapper {
+  overflow: hidden;
+}
+
+/* ======== FORMULÁRIOS E BOTÕES ======== */
+textarea,
+.input-comunicacao,
+.btnDetalhes {
+  width: 100%;
+}
+
+textarea {
+  height: 90px;
+  padding: var(--space-3);
+  border-radius: 10px;
+  border: 1px solid var(--cinza-medio);
+  resize: none;
+  font-family: inherit;
+}
+
+.input-comunicacao {
+  padding: var(--space-3);
+  border-radius: 8px;
+  border: 1px solid var(--cinza-medio);
+  margin-bottom: var(--space-3);
+  font-size: 14px;
+}
+
+.btnDetalhes {
+  background: var(--puroturquesa);
+  color: var(--branco);
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--space-3);
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: var(--turquesa);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btnDetalhes{
+    border-radius: 8px;
+    margin-right: 10px;
+  }
+
+/* Botão de envio do gestor */
+#btn-enviar-gestor {
+  background: var(--puroturquesa);
+  color: var(--branco);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s ease, transform 0.12s ease;
+}
+
+#btn-enviar-gestor:hover {
+  background: var(--turquesa);
+  transform: translateY(-2px);
+}
+
+/* ======== FOOTER ======== */
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px;
+  background: var(--azul1);
+  color: var(--branco);
+  text-align: center;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 1024px) {
+  #line-b {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  #line-b {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  nav {
+    display: none;
+  }
+
+  .menu-hamburguer {
+    display: flex;
+  }
+
+  .nav-responsivo.active {
+    display: flex;
+  }
+
+  header {
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: center;
+    padding: var(--space-4);
+  }
+
+  main {
+    gap: var(--space-5);
+  }
+
+  /* Garantir 1 coluna apenas */
+  .card-professores,
+  .card-enviar-mensagem,
+  #professores,
+  #enviar-mensagem {
+    grid-column: span 1 !important;
+    width: 100% !important;
+  }
+
+  /* Caso estejam dentro de grids */
+  #line-b,
+  #line-c,
+  .col-right,
+  .col-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  /* Tabela de professores fica mais fluida */
+  .tabela-professores {
+    width: 100%;
+    table-layout: auto;
+    font-size: 13px;
+  }
+
+  /* Input e textarea do enviar mensagem ficam mais largos */
+  .input-comunicacao,
+  textarea {
+    width: 100%;
+  }
+}
+
+
+
+/* =========================================================
+   TOAST / ALERTA PADRONIZADO – INFERIOR DIREITA
+   ========================================================= */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  color: #ffffff;
+  padding: 12px 18px;
+  background: #ffffff;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp .3s ease;
+
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================== */
+/* TOAST — POSIÇÃO MOBILE */
+/* ===================== */
+@media (max-width: 600px) {
+  .toast-container {
+    bottom: 0;
+    /* gruda na base baixa*/
+    left: 50%;
+    /* centraliza */
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* força centralização */
+    gap: 8px;
+  }
+
+  .toast {
+    width: 95%;
+    /* ocupa quase toda a barra superior */
+    text-align: center;
+    /* centraliza texto */
+  }
+}
+
+.input-error {
+  outline: 2px solid var(--vermelho);
+  background-color: rgba(255, 0, 0, 0.08);
+}
+
+/* =========================================================
+   AJUSTE UNIVERSAL PARA CELULAR — 1 COLUNA RESPONSIVA
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ----------- Layout geral ----------- */
+  .container,
+  main {
+    width: 100%;
+    max-width: 480px;
+    /* limite confortável para celular */
+    margin: 0 auto;
+    /* centraliza sem colar nas bordas */
+    padding: 16px;
+    /* espaçamento lateral */
+  }
+  .btnDetalhes{
+    font-size: 12px;
+    padding: 10px;
+    margin: 8px;
+    margin-right: 8px;
+    border-radius: 8px;
+  }
+
+  /* ----------- Cards em 1 coluna ----------- */
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .card {
+    width: 100%;
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  /* ----------- Títulos ----------- */
+  .card h2 {
+    font-size: 20px;
+  }
+
+  /* ----------- Tabelas ----------- */
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  /* ----------- Gráficos (Chart.js) ----------- */
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ----------- Textos ----------- */
+  .info-aluno h3 {
+    font-size: 18px;
+  }
+
+  /* ----------- Inputs e selects ----------- */
+  select,
+  textarea,
+  input {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  /* ----------- Botões ----------- */
+  button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  
+
+  /* ----------- MENU RESPONSIVO OFICIAL ----------- */
+  nav {
+    display: none;
+  }
+
+  .nav-responsivo {
+    width: 100%;
+    max-width: 480px;
+    /* igual ao container */
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .nav-responsivo a {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+  }
+}
+
+
+/* =========================================================
+   TOAST / ALERTA PADRONIZADO – INFERIOR DIREITA
+   ========================================================= */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  color: #fff;
+  padding: 12px 18px;
+  background: #ffffff;
+  border-radius: 8px;
+  font-size: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp .3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================== */
+/* TOAST — POSIÇÃO MOBILE */
+/* ===================== */
+@media (max-width: 600px) {
+  .toast-container {
+    bottom: 0;
+    /* gruda na base baixa*/
+    left: 50%;
+    /* centraliza */
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* força centralização */
+    gap: 8px;
+  }
+
+  .toast {
+    width: 95%;
+    /* ocupa quase toda a barra superior */
+    text-align: center;
+    /* centraliza texto */
+  }
+}
